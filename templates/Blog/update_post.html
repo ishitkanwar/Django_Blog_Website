@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% if user.is_authenticated %}
+    {% block title %}
+        Update Blog Post
+    {% endblock %}
+
+    {% block content %}
+    <h1>The Page Works</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class = "btn btn-success">Update</button>
+    </form>
+    {% endblock %}
+{% else %}
+<h1>Wrong Thing Dude</h1>
+{% endif %}
+
