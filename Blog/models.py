@@ -15,7 +15,7 @@ class Post(models.Model):
     def __str__(self):
         return self.title_blog + ' | ' + str(self.author_blog) 
     def get_absolute_url(self):
-        return reverse('home')
+        return reverse('blog_detail', kwargs={'pk': self.pk})
         # could also be changed to go back to home page
         # return reverse('home')
 
