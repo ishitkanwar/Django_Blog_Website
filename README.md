@@ -1,1 +1,1 @@
-# dummyme
+# Django Blog Website
