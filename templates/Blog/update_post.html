@@ -2,20 +2,22 @@
 
 
 {% if user.is_authenticated %}
-    {% block title %}
-        Update Blog Post
-    {% endblock %}
+    {% if user.id == post.author_blog.id %}
+        {% block title %}
+            Update Blog Post
+        {% endblock %}
 
-    {% block content %}
-    <h1>The Page Works</h1>
+        {% block content %}
+        <h1>The Page Works</h1>
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class = "btn btn-success">Update</button>
-    </form>
-    {% endblock %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class = "btn btn-success">Update</button>
+        </form>
+        {% endblock %}
+    {% endif %}
 {% else %}
-<h1>Wrong Thing Dude</h1>
+<h1>You Need to Login in oder to access this Page</h1>
 {% endif %}
 

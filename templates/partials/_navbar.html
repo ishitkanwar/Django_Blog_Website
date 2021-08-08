@@ -15,6 +15,18 @@
         >
           <a class="nav-link" href="{% url 'home' %}">Home</a>
         </li>
+        {% if cat_menu %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Categories
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% for indv_category in cat_menu %}
+                <li><a class="dropdown-item" href="{% url 'category' indv_category|slugify %}">{{ indv_category }}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% endif %}
         {% if user.is_authenticated %}
           <li
           {% if 'add_post' in request.path %}
@@ -24,6 +36,15 @@
           {% endif %}
           >
             <a class="nav-link" href="{% url 'add_post' %}">Add Post</a>
+          </li>
+          <li
+          {% if 'add_category' in request.path %}
+            class="nav-item active"
+          {% else %}
+            class="nav-item"
+          {% endif %}
+          >
+            <a class="nav-link" href="{% url 'add_category' %}">Add Category</a>
           </li>
           <li
           {% if 'logout' in request.path %}

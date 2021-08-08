@@ -13,4 +13,8 @@
         {{ form.as_p }}
         <button class = "btn btn-success">Post</button>
 </div>
+<script>
+    var name = "{{ user.id }}";
+    document.getElementById('author_name').value = name;
+</script>
 {% endblock %}

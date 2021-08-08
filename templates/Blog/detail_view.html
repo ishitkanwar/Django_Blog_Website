@@ -11,4 +11,18 @@ By: {{ post.author_blog }} - <a href="{% url 'update_post' post.pk %}">Edit</a> 
 
     <a class="btn btn-dark" href="{% url 'home' %}">Go Back</a>
 
+
+    {% if liked %}
+        <form action="{% url 'like_post' post.pk %}" method="POST">
+            {% csrf_token %}
+            <button type = "submit", name="post_id", value="{{ post.id }}", class="btn btn-danger btn-sm">UnLike</button>
+        </form>
+    {% else %}
+        <form action="{% url 'like_post' post.pk %}" method="POST">
+            {% csrf_token %}
+            <button type = "submit", name="post_id", value="{{ post.id }}", class="btn btn-primary btn-sm">Like</button>
+        </form>
+    {% endif %}
+    {{ total_likes }}
+
 {% endblock %}

@@ -26,7 +26,7 @@ SECRET_KEY = 'a9e6b&bmr4r8hois(xx(6^+_vr!voog-2ivkuhs9ul)dkp+3)='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['dummyme.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -78,18 +78,25 @@ WSGI_APPLICATION = 'v2.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'v2',
+#         'USER': 'postgres',
+#         'PASSWORD': '1234567890',
+#         'HOST': 'localhost',
+#     }
+# }
+# import dj_database_url
+# db_from_env = dj_database_url.config(conn_max_age=600)
+# DATABASES['default'].update(db_from_env)
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'v2',
-        'USER': 'postgres',
-        'PASSWORD': '1234567890',
-        'HOST': 'localhost',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -130,6 +137,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
-SECURE_SSL_REDIRECT = True
+# SECURE_SSL_REDIRECT = True
 # The above line is for when i need to deploy the app onto the web .
