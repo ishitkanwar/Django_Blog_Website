@@ -10,7 +10,7 @@
 <ul>
     {% for post in object_list %}
         <li>
-            <a href="{% url 'blog_detail' post.pk %}">{{ post.title_blog }}</a> - <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a> - {{ post.author_blog }} - 
+            <a href="{% url 'blog_detail' post.pk %}">{{ post.title_blog }}</a> - <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a> - {{ post.author_blog }}
             {% for speaker in post.category.all %}
                 {{ speaker }}
             {% endfor %}
@@ -22,7 +22,7 @@
             <br>
             {{ post.snippet_blog }}
             <br>
-            {{ post.body|slice:":500" }}....
+            {{ post.body|safe|truncatechars:500 }}
         </li>
     {% endfor %}
 </ul>

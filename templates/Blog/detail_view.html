@@ -6,12 +6,20 @@
 
 {% block content %}
 <h1>{{ post.title_blog }}</h1>
-<h2>{{ post.post_date }}</h2>
-By: {{ post.author_blog }} - <a href="{% url 'update_post' post.pk %}">Edit</a> - <a href="{% url 'delete_post' post.pk %}">Delete</a><br>{{ post.body|safe }}
+<h4>By: {{ post.author_blog }} ({{ post.post_date }})</h4>
+{% if user.is_authenticated %}
+<a href="{% url 'update_post' post.pk %}">Edit</a> - <a href="{% url 'delete_post' post.pk %}">Delete</a>
+{% endif %}  
+<br>
+<hr>
+{{ post.body|safe }}
 
-    <a class="btn btn-dark" href="{% url 'home' %}">Go Back</a>
+<p>
+    Total No of Likes: {{ total_likes }}
+</p>
+<a class="btn btn-dark" href="{% url 'home' %}">Go Back</a>
 
-
+{% if user.is_authenticated %}
     {% if liked %}
         <form action="{% url 'like_post' post.pk %}" method="POST">
             {% csrf_token %}
@@ -23,6 +31,6 @@ By: {{ post.author_blog }} - <a href="{% url 'update_post' post.pk %}">Edit</a> 
             <button type = "submit", name="post_id", value="{{ post.id }}", class="btn btn-primary btn-sm">Like</button>
         </form>
     {% endif %}
-    {{ total_likes }}
+{% endif %}    
 
 {% endblock %}
